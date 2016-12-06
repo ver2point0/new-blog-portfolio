@@ -12,7 +12,7 @@
     <div id="logo">
       <%= link_to root_path do %>
         <%= image_tag "brain.svg" %>
-      <% end %>
+      <% end %> 
       <!--Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> -->
       <!--from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> -->
       <!--is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>-->
@@ -21,8 +21,8 @@
     <ul>
       <li class="category">Website</li>
       <li><%= link_to "Blog", root_path %></li>
-      <li>Portfolio</li>
-      <li>About</li>
+      <li><%= link_to "Portfolio", portfolio_path %></li>
+      <li><%= link_to "About", about_path %></li>
       
     </ul>
   
@@ -39,7 +39,15 @@
   
   <div id="main_content">
     <div id="header">
-      <p>All Posts</p>
+      <% if current_page?(root_path) %>
+        <p>All Posts</p>
+      <% elsif current_page?(about_path) %>
+        <p>About</p>
+      <% elsif current_page?(portfolio_path) %>
+        <p>Portfolio</p>
+      <% else %>
+        <%= link_to "Back to All Posts", root_path %>
+      <% end %>
       
       <div class="buttons">
         <button class="button"><%= link_to "New Post", new_post_path %></button>
